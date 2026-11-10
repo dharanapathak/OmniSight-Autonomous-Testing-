@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniSight Demo Form</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f5f9;margin:0;padding:40px;color:#172033}
+main{max-width:620px;margin:auto;background:white;padding:32px;border-radius:14px;box-shadow:0 8px 28px #17203318}
+label{display:block;margin:18px 0 7px;font-weight:600}
+input,select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #bbc4d2;border-radius:7px;font-size:16px}
+button{margin-top:22px;background:#2449a5;color:white;border:0;border-radius:7px;padding:12px 22px;font-size:16px;cursor:pointer}
+#result{margin-top:20px;padding:12px;background:#eef7ef;border-radius:7px;display:none}
+</style>
+</head>
+<body>
+<main>
+<h1>OmniSight Demo Form</h1>
+<p>Use this page to test form-filling and self-healing locator behavior.</p>
+<form id="demoForm">
+<label for="full-name">Full Name</label>
+<input id="full-name" name="full_name" placeholder="Enter your name">
+<label for="email-address">Email Address</label>
+<input id="email-address" name="email" type="email" placeholder="Enter your email">
+<label for="interest">Area of Interest</label>
+<select id="interest" name="interest">
+<option value="">Choose an interest</option>
+<option>AI</option><option>Python</option><option>Machine Learning</option><option>Web Development</option>
+</select>
+<button type="submit">Submit Application</button>
+</form>
+<div id="result" role="status"></div>
+</main>
+<script>
+document.getElementById('demoForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const data=new FormData(e.target);
+ const result=document.getElementById('result');
+ result.textContent=`Submitted: ${data.get('full_name')} | ${data.get('email')} | ${data.get('interest')}`;
+ result.style.display='block';
+});
+</script>
+</body>
+</html>
